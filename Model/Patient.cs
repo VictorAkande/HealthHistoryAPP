@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HealthHistory.Model
 {
@@ -9,7 +10,9 @@ namespace HealthHistory.Model
         public string LastName { get; set; }
         public int NIN { get; set; }
         public string Address { get; set; }
-       public HealthRecord HealthRecord { get; set; }
+     
+        public ICollection<HealthRecord> HealthRecord { get; set; }
+            = new List<HealthRecord>();
 
     }
 }

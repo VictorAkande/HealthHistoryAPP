@@ -12,5 +12,7 @@ namespace HealthHistory.Services
 
         void CreatePatient(Patient patient);
 
+        bool Save();
+
     }
 }

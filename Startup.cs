@@ -1,3 +1,4 @@
+using AutoMapper;
 using HealthHistory.Context;
 using HealthHistory.Services;
 using Microsoft.AspNetCore.Builder;
@@ -35,6 +36,8 @@ namespace HealthHistory
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             
         }

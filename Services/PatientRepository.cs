@@ -36,5 +36,11 @@ namespace HealthHistory.Services
         {
             return medicDBContext.Patients.ToList();
         }
+
+
+        public bool Save()
+        {
+            return (medicDBContext.SaveChanges() >= 0);
+        }
     }
 }
