@@ -14,6 +14,19 @@ namespace HealthHistory.Services
         {
             this.medicDBContext = medicDBContext;
         }
+
+        public void CreatePatient(Patient patient)
+        {
+            var Patient = medicDBContext.Patients.FindAsync(patient.Id);
+            if (patient == null)
+            {
+                 throw new ArgumentNullException(nameof(patient));
+            }
+
+            medicDBContext.Patients.Add(patient);
+
+        }
+
         public Patient GetPatient(Guid id)
         {
             throw new NotImplementedException();

@@ -10,5 +10,7 @@ namespace HealthHistory.Services
         IEnumerable<Patient> GetPatients();
         Patient GetPatient(Guid id);
 
+        void CreatePatient(Patient patient);
+
     }
 }
