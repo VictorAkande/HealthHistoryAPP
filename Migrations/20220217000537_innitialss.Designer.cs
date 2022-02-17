@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthHistory.Migrations
 {
     [DbContext(typeof(MedicDBContext))]
-    [Migration("20220216071952_Initial")]
-    partial class Initial
+    [Migration("20220217000537_innitialss")]
+    partial class innitialss
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,6 +61,9 @@ namespace HealthHistory.Migrations
                     b.Property<string>("Diagnosis")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("PatientId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("TreatmentAdministered")
                         .HasColumnType("nvarchar(max)");
 
@@ -68,6 +71,8 @@ namespace HealthHistory.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
 
                     b.ToTable("HealthRecords");
                 });
@@ -87,9 +92,6 @@ namespace HealthHistory.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("HealthRecordId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -101,8 +103,6 @@ namespace HealthHistory.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HealthRecordId");
-
                     b.ToTable("Patients");
                 });
 
@@ -113,11 +113,13 @@ namespace HealthHistory.Migrations
                         .HasForeignKey("HealthRecordId");
                 });
 
-            modelBuilder.Entity("HealthHistory.Model.Patient", b =>
+            modelBuilder.Entity("HealthHistory.Model.HealthRecord", b =>
                 {
-                    b.HasOne("HealthHistory.Model.HealthRecord", "HealthRecord")
-                        .WithMany()
-                        .HasForeignKey("HealthRecordId");
+                    b.HasOne("HealthHistory.Model.Patient", "Patient")
+                        .WithMany("HealthRecords")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

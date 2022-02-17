@@ -41,7 +41,7 @@ namespace HealthHistory.Controllers
            var patientToSave = mapper.Map<DTOs.PatientForCreationDto>(patientEntity);
 
             patientRepositories.CreatePatient(patientEntity);
-            patientRepositories.Save();
+            //patientRepositories.Save();
 
             return Ok(patientToSave);
 

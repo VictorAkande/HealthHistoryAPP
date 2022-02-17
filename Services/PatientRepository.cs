@@ -17,13 +17,14 @@ namespace HealthHistory.Services
 
         public void CreatePatient(Patient patient)
         {
-            var Patient = medicDBContext.Patients.FindAsync(patient.Id);
+            //var Patient = medicDBContext.Patients.FindAsync(patient.Id);
             if (patient == null)
             {
                  throw new ArgumentNullException(nameof(patient));
             }
 
             medicDBContext.Patients.Add(patient);
+            medicDBContext.SaveChanges();
 
         }
 
@@ -38,9 +39,11 @@ namespace HealthHistory.Services
         }
 
 
-        public bool Save()
+        public  bool Save()
         {
             return (medicDBContext.SaveChanges() >= 0);
         }
+
+      
     }
 }

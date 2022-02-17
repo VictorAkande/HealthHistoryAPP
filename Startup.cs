@@ -31,11 +31,9 @@ namespace HealthHistory
             services.AddControllers();
 
             services.AddScoped<IPatientRepositories, PatientRepository>();
-
-            services.AddDbContextPool<MedicDBContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
+            services.AddScoped<IHealthRecordRepositories, HealthRecordRepository>();
+            services.AddDbContext<MedicDBContext>(options =>
+                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")),ServiceLifetime.Transient);
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

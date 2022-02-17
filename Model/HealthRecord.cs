@@ -9,11 +9,12 @@ namespace HealthHistory.Model
         public Guid Id { get; set; }
         public string Diagnosis { get; set; }
         public String TreatmentAdministered { get; set; }
-
-        Patient Patient { get; set; }
-      
-        [ForeignKey("PatientID")]
+        public Patient Patient { get; set; }
+        
         public Guid PatientId { get; set; }
+       
+      
+      
 
 
 
